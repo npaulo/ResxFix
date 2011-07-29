@@ -1,0 +1,29 @@
+ResxFix 1.0
+
+Cannot build resx file when compiling for 64-bit - .NET Framework?
+Try this script.
+
+- How to use this?
+	python script     : python ResxFix.py <filename.resx>
+	win32 compilation : ResxFix.exe <filename.resx>
+
+
+- Inspiration
+	[Source]
+		http://connect.microsoft.com/VisualStudio/feedback/details/554759/error-in-control-resx-file-when-adding-imagelist#details
+
+	[Workaround]
+	"
+		1.    Open Form in Designer and make needed GUI changes. Close designer and save
+		2.    Compile project and receive RESX compile error (only forms with Imagelist should have this problem)
+		3.    Double-click resx compile error to open resx file.
+		4.    Scroll to top of imagestream.
+		5.    Edit the top line of the Image stream:
+		AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
+		TO
+		AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj0yLjAuMC4w
+		6.    Close and save resx file and recompile.
+		**NOTE: the only difference are the characters at end "j00LjAuMC4w' to "j0yLjAuMC4w"
+
+		This needs to be done EVERY TIME you open the form in Designer mode.
+	"
